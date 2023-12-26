@@ -13,7 +13,6 @@ import logging
 import threading
 import ngrok
 import base64
-import uvicorn
 from mutagen.mp3 import MP3
 logging.basicConfig(filename='WebServer.log', filemode='w', level=logging.DEBUG)
 
@@ -178,5 +177,3 @@ async def process(request: Request, Form: str = Body(...), voicesound: UploadFil
 	logging.info("[" + str(random_hash) + "] Request completed in " + str(round(float((time.time() - start_execution) * 1000),2)) + " msec")
 	print("[" + str(random_hash) + "] Answer from Wit.Ai API: " + resp[random_hash]['text'])
 	return resp[random_hash]['text']
-
-uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
