@@ -16,8 +16,11 @@ import base64
 from mutagen.mp3 import MP3
 logging.basicConfig(filename='WebServer.log', filemode='w', level=logging.DEBUG)
 
-ngrok.set_auth_token("2Rt5fmsuEL9sj0X9fe9uhH7uwzz_Ty3rsjrfMvRrpo8DpzjN")
-listener = ngrok.forward(8000, domain="trusty-sunfish-firmly.ngrok-free.app")
+DomainName="xxx-xxx.ngrok-free.app"
+ngrokToken="xxx-xxx-xxx"
+
+ngrok.set_auth_token(ngrokToken)
+listener = ngrok.forward(8000, domain=DomainName)
 
 print("Ingress established at https://trusty-sunfish-firmly.ngrok-free.app")
 
@@ -26,8 +29,7 @@ platform = "Linux"
 
 # Wit.ai API Keys (Multiple can be used in order to avoid rate-limit issues.)
 api_keys = [
-	"6STIWLVOXDOPRP5DYSHSBI5TOMH25BVD",
-  	"KQSOYH5WCPYU7KUQVUYEO4WE24O7R7JT"
+	"test_fill",
 ]
 
 wit_api = {}
@@ -43,27 +45,27 @@ if platform == "Windows":
 		if not os.path.exists('C:\\SpeechRecognition'):
 			os.mkdir('C:\\SpeechRecognition')
 			os.mkdir('C:\\SpeechRecognition\\Cache')
-			os.chdir('C:\\SpeechRecognition')
+			#os.chdir('C:\\SpeechRecognition')
 			logging.debug("Creating Environment for the first time!")
 			print("Creating Environment for the first time!")
 		else:    
-			os.chdir('C:\\SpeechRecognition')
+			#os.chdir('C:\\SpeechRecognition')
 			logging.debug("Environment already exists.")
 			print("Environment already exists.")
 	except:
 		pass
 
 # Linux
-#if platform == "Linux":
-#	try:
-#		if not os.path.exists('/SpeechRecognition'):
-#			os.mkdir('/SpeechRecognition')
-#			os.mkdir('/SpeechRecognition/Cache')
-#			os.chdir('/SpeechRecognition')
-#		else:    
-#			os.chdir('/SpeechRecognition')
-#	except Exception as e:
-#		print(e)
+if platform == "Linux":
+	try:
+		if not os.path.exists('/SpeechRecognition'):
+			os.mkdir('/SpeechRecognition')
+			os.mkdir('/SpeechRecognition/Cache')
+			#os.chdir('/SpeechRecognition')
+		else:    
+			#os.chdir('/SpeechRecognition')
+	except Exception as e:
+		print(e)
 
 app = FastAPI()
 
