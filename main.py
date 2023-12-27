@@ -22,7 +22,7 @@ ngrokToken="xxx-xxx-xxx"
 ngrok.set_auth_token(ngrokToken)
 listener = ngrok.forward(8000, domain=DomainName)
 
-print("Ingress established at https://trusty-sunfish-firmly.ngrok-free.app")
+print("Ingress established at " + DomainName)
 
 # System
 platform = "Linux"
